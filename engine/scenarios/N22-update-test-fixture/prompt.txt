@@ -1,0 +1,1 @@
+Add a new test fixture in tests/fixtures/ with a sample expired-session case for the bug we just fixed.

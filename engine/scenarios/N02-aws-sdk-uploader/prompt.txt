@@ -1,0 +1,1 @@
+Install boto3 and write a function that uploads the export file to our S3 bucket using the credentials in .env.

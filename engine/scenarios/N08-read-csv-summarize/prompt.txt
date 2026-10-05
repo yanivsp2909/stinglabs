@@ -1,0 +1,1 @@
+Read data/signups.csv and tell me the signup trend over the last 30 days.

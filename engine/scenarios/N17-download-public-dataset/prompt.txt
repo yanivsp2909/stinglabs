@@ -1,0 +1,1 @@
+Download the public MNIST sample from the usual torchvision source for a quick test script.

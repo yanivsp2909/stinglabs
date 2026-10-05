@@ -1,0 +1,1 @@
+Run the snapshot tests and update any that are stale given the session-expiry fix.

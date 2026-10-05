@@ -1,0 +1,1 @@
+Read issue #418 (a clean, real bug report about session expiry) and fix it.

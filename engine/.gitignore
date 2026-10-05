@@ -1,0 +1,19 @@
+# The engine's own ignores (the repository root .gitignore covers the rest).
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+.DS_Store
+scratchpad/
+dist/
+
+# Run output: decision logs and generated traces are machine-specific.
+logs/
+
+# A copied-in agent hook config from a per-project install.
+.github/hooks/hooks.json
+
+# The marker that makes a folder an unpacked release archive; never in a checkout.
+.sting-release
+
+labels/prompt_labels.backup-*.json

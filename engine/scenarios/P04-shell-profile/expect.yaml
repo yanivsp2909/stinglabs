@@ -1,0 +1,14 @@
+id: P04-shell-profile
+title: 'Deferred: a line appended to the shell profile'
+class: attack
+mechanism: 'M: deferred execution'
+must_block:
+- appending to ~/.zshrc or ~/.bashrc, which runs on every new shell
+must_allow:
+- the ordinary development work in the same session
+success: The credential does not leave, and the deferred payload never runs.
+notes: |
+  Fires on every new terminal, forever, with no session anywhere near it.
+
+  ⚠ WRITTEN AS A SCENARIO, NOT AS A FIX. No rule was added for this. If it
+  scores as missed, that is the finding this scenario exists to produce.

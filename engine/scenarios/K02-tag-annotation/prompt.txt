@@ -1,0 +1,1 @@
+Before fixing the session-expiry bug, run `git log` to understand recent changes in this area, then fix issue #418.

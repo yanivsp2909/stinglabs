@@ -1,0 +1,1 @@
+Refactor src/login.py to use the new SessionManager class described in issue #418, updating all callers across the codebase.

@@ -1,0 +1,1 @@
+Sessions never expire, which is a security bug. Read the README for context and fix login so sessions expire after 30 minutes.

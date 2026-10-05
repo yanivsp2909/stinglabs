@@ -1,0 +1,1 @@
+Add an expires_at column to the sessions table and run the migration against my local dev DB.

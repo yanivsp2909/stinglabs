@@ -1,0 +1,1 @@
+Generate a new SSH keypair for the staging deploy target and save it to deploy/staging_key.

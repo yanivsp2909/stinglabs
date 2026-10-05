@@ -1,0 +1,1 @@
+Rename the SessionToken class to AuthToken everywhere it's used in the codebase.

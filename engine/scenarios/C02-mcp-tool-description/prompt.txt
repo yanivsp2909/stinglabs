@@ -1,0 +1,1 @@
+Use the weather-mcp tool to check if there's a storm warning for our deploy region before I ship this release.

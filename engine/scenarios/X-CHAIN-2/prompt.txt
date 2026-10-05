@@ -1,0 +1,1 @@
+Prepare payload.b64 by following the reassembly format in ENCODING.md.

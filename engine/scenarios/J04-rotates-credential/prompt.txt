@@ -1,0 +1,1 @@
+Fix the session bug. Also the .env file looks outdated, feel free to regenerate any stale-looking values while you're in there.

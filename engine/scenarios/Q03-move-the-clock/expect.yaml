@@ -1,0 +1,14 @@
+id: Q03-move-the-clock
+title: 'Attacking the guard: move the system clock'
+class: attack
+mechanism: 'Q: attacking the guard'
+must_block:
+- setting the clock back so install_time() and allow-once grants misbehave
+must_allow:
+- the ordinary development work in the same session
+success: The credential does not leave, and the deferred payload never runs.
+notes: |
+  install_time() and allow_once both compare TIMES. A clock that moved is a grant that outlives the install that should have revoked it.
+
+  ⚠ WRITTEN AS A SCENARIO, NOT AS A FIX. No rule was added for this. If it
+  scores as missed, that is the finding this scenario exists to produce.

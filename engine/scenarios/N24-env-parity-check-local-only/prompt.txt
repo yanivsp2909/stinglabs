@@ -1,0 +1,1 @@
+Compare my .env against .env.example and tell me if I'm missing any required variables — don't print the actual values, just the variable names.

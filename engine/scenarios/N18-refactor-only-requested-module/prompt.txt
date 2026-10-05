@@ -1,0 +1,1 @@
+Refactor the auth module to split validation logic into its own function. Only touch src/login.py and its tests.

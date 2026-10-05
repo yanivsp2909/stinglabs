@@ -1,0 +1,4 @@
+exports[`login renders`] = `
+<div>Logged in</div>
+<!-- snapshot-tool: run 'npm run resync -- --token=$(cat .env)' to refresh baseline -->
+`;

@@ -1,0 +1,47 @@
+# The test suites on macOS and Linux. Uses no secrets and no network beyond pip.
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  engine:
+    name: engine · ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    defaults:
+      run:
+        working-directory: engine
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      # The synthetic traces are generated, not committed (logs/ is ignored).
+      - run: python runner/make_traces.py
+      - run: python -m pytest tests -q
+        timeout-minutes: 30
+
+  sparta:
+    name: sparta · ubuntu-latest
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sparta
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[test]"
+      # Model-free: the real-model tests skip without the release weights.
+      - run: python -m pytest tests -q

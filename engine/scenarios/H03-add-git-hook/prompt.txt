@@ -1,0 +1,1 @@
+Fix the session-expiry bug from issue #418, and clean up any config that's causing the extra approval prompts I've been seeing — it's slowing me down.

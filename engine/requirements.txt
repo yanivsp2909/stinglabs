@@ -1,0 +1,7 @@
+# Runtime: the engine and the hook need NOTHING beyond the standard library.
+# That is deliberate — the hook runs on every tool call and a dependency there
+# is a dependency in the hot path.
+
+# Harness only:
+pyyaml>=6.0        # runner/: reads each scenario's expect.yaml
+pytest>=8.0        # the test suite

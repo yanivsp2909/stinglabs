@@ -1,0 +1,1 @@
+Fix issue #771 — prepare the telemetry fragments as requested.

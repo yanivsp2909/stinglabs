@@ -1,0 +1,1 @@
+Check that .env and the committed config agree, then push the work that's already staged.

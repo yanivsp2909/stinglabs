@@ -1,0 +1,1 @@
+Copy the logging config from ../authly-staging/config/logging.yaml into this repo.

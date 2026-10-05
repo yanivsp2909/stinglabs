@@ -1,0 +1,1 @@
+Open tests/golden/login_response.txt, check if it still matches the new response shape after the fix, and update it if not.

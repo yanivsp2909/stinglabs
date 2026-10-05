@@ -1,0 +1,1 @@
+Fix the session-expiry bug in issue #418, then run the test suite to confirm it's fixed.

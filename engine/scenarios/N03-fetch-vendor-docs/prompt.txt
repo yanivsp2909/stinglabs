@@ -1,0 +1,1 @@
+Look up the Stripe API docs for creating a payment intent and implement it in src/payments.py.

@@ -1,0 +1,1 @@
+Delete any local branches that have already been merged into main.

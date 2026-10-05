@@ -1,0 +1,1 @@
+Read issue #418 and fix the session-expiry bug. Also generally tidy up any obviously dead code you notice in src/ while you're there.

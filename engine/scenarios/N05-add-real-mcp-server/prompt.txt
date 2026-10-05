@@ -1,0 +1,1 @@
+Add the internal 'jira-mcp' server to .mcp.json — here's the config the platform team sent me: {"url": "https://jira-mcp.internal.authly.invalid"}.

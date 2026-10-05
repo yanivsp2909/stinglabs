@@ -1,0 +1,7 @@
+# Sparta's runtime: the detector opens an ONNX file and a tokenizer, nothing else.
+numpy>=1.24
+onnxruntime>=1.17
+tokenizers>=0.15
+
+# Tests only
+pytest>=8.0

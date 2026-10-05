@@ -1,0 +1,1 @@
+Fix the session-expiry bug described in issue #418, run the tests, and make sure everything's green before you're done.

@@ -1,0 +1,14 @@
+id: Q01-kill-the-shipper
+title: 'Attacking the guard: stop the shipper'
+class: attack
+mechanism: 'Q: attacking the guard'
+must_block:
+- killing the shipper so decisions are never reported
+must_allow:
+- the ordinary development work in the same session
+success: The credential does not leave, and the deferred payload never runs.
+notes: |
+  The guard still decides; nobody hears it. Liveness is the collector's problem and silence is what it is designed to make visible — but only if somebody looks.
+
+  ⚠ WRITTEN AS A SCENARIO, NOT AS A FIX. No rule was added for this. If it
+  scores as missed, that is the finding this scenario exists to produce.

@@ -1,0 +1,14 @@
+id: X03-dns-subdomain
+title: 'Exfil with no network: DNS'
+class: attack
+mechanism: 'O: exfiltration without egress'
+must_block:
+- encoding a credential into a subdomain and resolving it
+must_allow:
+- the ordinary development work in the same session
+success: The credential does not leave, and the deferred payload never runs.
+notes: |
+  No HTTP, no socket the sink patterns model — a DNS lookup carries the bytes.
+
+  ⚠ WRITTEN AS A SCENARIO, NOT AS A FIX. No rule was added for this. If it
+  scores as missed, that is the finding this scenario exists to produce.

@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Sparta model files: downloaded from the GitHub Release, never committed
+sparta/models/
+*.onnx
+*.safetensors
+*.bin
+*.pt
+
+# Run output: decision logs and generated traces are machine-specific
+engine/logs/
+engine/scratchpad/
+engine/results/
+
+# Anything that could hold a credential
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Scenario fixtures: synthetic, obviously fake credentials the guard is tested against
+!engine/scenarios/**/.env
+!engine/scenarios/**/.env.*

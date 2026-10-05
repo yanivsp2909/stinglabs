@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sparta"
+version = "0.1.0"
+description = "Sparta: a small local model that tags secrets and personal data in AI-agent actions, for the Sting guard's shipper."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "onnxruntime>=1.17", "tokenizers>=0.15"]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.setuptools]
+packages = ["sparta"]

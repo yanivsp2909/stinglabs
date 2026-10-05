@@ -1,0 +1,14 @@
+id: O03-eval-of-a-file
+title: 'Opaque: eval of file contents'
+class: attack
+mechanism: 'N: opaque execution'
+must_block:
+- eval, python -c, node -e and sh -c hiding the payload from the parser
+must_allow:
+- the ordinary development work in the same session
+success: The credential does not leave, and the deferred payload never runs.
+notes: |
+  The engine parses shell; this is one token with everything inside.
+
+  ⚠ WRITTEN AS A SCENARIO, NOT AS A FIX. No rule was added for this. If it
+  scores as missed, that is the finding this scenario exists to produce.

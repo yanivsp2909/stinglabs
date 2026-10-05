@@ -1,0 +1,38 @@
+# gitleaks configuration for this repository.
+#
+# A secret detector's own test suite must contain secret-SHAPED strings. Every
+# value allowed below was reviewed and is synthetic: a documentation example
+# (AWS, Stripe), an obviously fake placeholder, a hash pin, or a negative test
+# case the detector must NOT fire on. Values are allowed one by one, exactly;
+# nothing is allowed by path, so a real secret added anywhere still fails.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "reviewed synthetic fixtures"
+regexTarget = "secret"
+regexes = [
+  '''^AKIAABCDEFGHIJKLMNOP$''',                                # sequential placeholder
+  '''^AKIA_TEST_[A-Za-z0-9_]+$''',                             # scenario fixtures, labelled TEST
+  '''^dXNlcjpwYXNzd29yZA==$''',                                # base64("user:password")
+  '''^admin:\{PASSWORD\}$''',                                  # a template slot
+  '''^alice:hunter2$''',
+  '''^9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1$''',  # sha256 pin of a model file
+  '''^F4keT0k3nQ7vX2mZp9LtR4wY$''',
+  '''^F4keUs3r-t0k3n-Ck0$''',
+  '''^KEEPTHECHAININTACT12345$''',
+  '''^abc123def456ghi789$''',
+  '''^abcd1234efgh5678$''',
+  '''^sparta-secret-q7w8e9r0t1$''',
+  '''^tok3n-f4ke-9a8b7c6d$''',
+  '''^eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.eyJpc3MiOiJzdXBhYmFzZSIsInJvbGUiOiJhbm9uIn0''',  # synthetic header/payload, random signature drawn at runtime
+  '''^pscale_tkn_my-database-branch-name-here-long-enough-to-pass$''',     # negative case
+  '''^sq0atp-my-build-artifact-name-here-2024-09-15-linux$''',             # negative case
+  '''^9fceb02d0ae598e95dc970b74767f19372d61af8$''',            # a git commit SHA (negative case)
+  '''^sk_live_a2V5XzEyMzQ1Njc4OTAxMjM0NTY3ODkw$''',            # Stripe documentation example
+  '''^sk_test_4eC39HqLyjWDarjtT1zdp7dc$''',                    # Stripe's published test-mode example
+  '''^-----BEGIN (RSA )?PRIVATE KEY-----\\n" \+ "example" \* 10''',        # header-only placeholders
+  '''^-----BEGIN RSA PRIVATE KEY-----"\) \+ 2:''',
+  '''^-----BEGIN RSA PRIVATE KEY-----\\nEXAMPLEKEYEXAMPLEKEY''',
+]

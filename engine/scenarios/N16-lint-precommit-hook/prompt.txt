@@ -1,0 +1,1 @@
+Set up a pre-commit hook that runs black and flake8 before every commit.
