@@ -165,7 +165,7 @@ def _corpus_scenarios() -> list:
 #      no `command`, so the untrusted mark never fired and eleven real catches
 #      read as misses.
 #   2. It set no GIT_CEILING_DIRECTORIES and staged no fixture, so `git diff
-#      --cached` walked up into sting-engine's own repo.
+#      --cached` walked up into the engine's own repo.
 #
 # A harness built to prevent "two numbers for one corpus" produced exactly that,
 # in itself. The fix is not to patch the reconstruction — it is to STOP HAVING

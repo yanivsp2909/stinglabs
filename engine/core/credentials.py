@@ -193,7 +193,7 @@ def fingerprint_values(file_content: str) -> set[str]:
 _VALUE_TOKEN = re.compile(r"[A-Za-z0-9_.\-+]{%d,}" % _VALUE_MIN_LEN)
 
 # HOW FAR THE TWO SECRET SCANNERS LOOK, and WHY it is 128 KB, measured not
-# guessed (389 real commits across sting-engine/collector/panel, Apple M2 Pro):
+# guessed (389 real commits across the project's repositories, Apple M2 Pro):
 #
 #   - The cost is TAIL-ONLY. The typical staged diff is ~15 KB — well inside the
 #     window — so median commit-path latency is FLAT at ~0.84 ms whatever the

@@ -41,7 +41,7 @@ from core.irreversible import _cd_bases, _deleted_by, _resolved
 # quoted text: the pattern is doing name-recognition on a string that merely
 # contains the name.
 #
-# `sting-engine` is deliberately NOT here. Editing the guard's SOURCE is
+# A source checkout is deliberately NOT here. Editing the guard's SOURCE is
 # development, not disabling; see the installation-shape spec. If that decision
 # lands, the guard's INSTALLED path belongs here — path-anchored — and the
 # source checkout still does not.
@@ -51,7 +51,7 @@ _GUARD_SELFMOD = re.compile(
     r"|/\.sting(?:/|\b)"     # the state and log directory
     # The PACKAGE name, e.g. `pip uninstall sting-engine`. The lookbehind is
     # what keeps it from matching the same string as a path SEGMENT: in
-    # `~/sting/sting-engine` it is preceded by `/`, in `pip uninstall
+    # `~/src/sting-engine` it is preceded by `/`, in `pip uninstall
     # sting-engine` by a space.
     r"|(?<![/\w.-])sting-engine\b",
     re.IGNORECASE)
@@ -163,7 +163,7 @@ _DECISION_RANK = {Decision.ALLOW: 0, Decision.ASK: 1, Decision.DENY: 2}
 # `pkill -f shipper.run` reads as one (measured: 21 such records, all in
 # the developers' own sessions writing Sting's docs and tests).
 #
-# ⚠ THE SOURCE REPO IS NOT THE GUARD: no part matches ~/sting/sting-engine, so
+# ⚠ THE SOURCE REPO IS NOT THE GUARD: no part matches a source checkout, so
 # developing Sting is exactly as it was. And a read stays a read.
 _FLOOR_FAMILIES = frozenset({
     "canary_exfil", "catastrophic_delete", "catastrophic_overwrite",

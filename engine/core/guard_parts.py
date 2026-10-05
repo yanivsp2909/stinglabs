@@ -34,7 +34,7 @@ settings, so a change to it is judged by what it changes
 (`core/hook_configs.py`, item C step 3b). Deleting or moving it, or ~/.claude,
 takes the guard's hook with it, so it is a HOLDER here.
 
-⚠ THE INSTALLED GUARD, NEVER ITS SOURCE. A checkout such as ~/sting/sting-engine
+⚠ THE INSTALLED GUARD, NEVER ITS SOURCE. A checkout of this repo
 is development: no pattern below matches it, and editing it stays exactly as it
 was. A home-level `.sting` is the guard's; a `.sting` inside a project is not.
 

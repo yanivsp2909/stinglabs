@@ -3,7 +3,7 @@
 Two fixes, both from one wrong diagnosis. A session was marked untrusted with
 
     kind: git-history
-    ref:  "cd .../sting-engine && python3 - <<'PYEOF'\\nimport io\\np='PROGRES"
+    ref:  "cd .../engine && python3 - <<'PYEOF'\\nimport io\\np='PROGRES"
 
 which reads as GIT_HISTORY matching inside a python heredoc. It was not: the
 heredoc closed at byte 3951 and a real `git log --oneline -1` matched at 4065.

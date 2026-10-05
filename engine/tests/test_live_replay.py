@@ -35,13 +35,13 @@ FIXTURE = ROOT / "logs" / "live-fixture"
 # assert something the engine never decided, which is the exact failure the
 # redaction question was worried about.
 # ⚠ FIXTURE DATA, NOT A LIVE DERIVATION — AND IT USED TO BE THE SECOND.
-# It read `redacted_cwd("/Users/<the author>/sting/sting-engine")`: the author's
+# It read `redacted_cwd("/Users/<the author>/src/sparta-security")`: the author's
 # own path put through the RUNNING MACHINE's substitution list. On his laptop
 # that yields `/Users/dev/…` and matches the fixture; on any other machine
 # nothing matches, the name survives, and this gate — the standing replay —
 # replays the cwd-less records against a root that appears nowhere in the
 # fixture. A gate whose input depends on who runs it is not a gate.
-FIXTURE_CWD = f"/Users/{IDENTITY_PLACEHOLDER}/sting/sting-engine"
+FIXTURE_CWD = f"/Users/{IDENTITY_PLACEHOLDER}/src/sparta-security"
 
 
 # ================================================= the state witness

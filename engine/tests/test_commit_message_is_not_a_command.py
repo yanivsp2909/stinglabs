@@ -31,7 +31,7 @@ def walk(steps, world=None, state=None):
 
 # ------------------------------------------------- the dogfooding regression
 DOGFOOD = (
-    "cd /Users/x/sting-engine && git add -A && git commit -q -F - <<'MSG'\n"
+    "cd /Users/x/sparta-security/engine && git add -A && git commit -q -F - <<'MSG'\n"
     "docs: record the source rules\n\n"
     "  N21  git log           legitimate\n"
     "MSG"

@@ -37,7 +37,7 @@ from core.probes import NullWorld                                # noqa: E402
 from core.types import Action, ActionKind, Decision, SessionState  # noqa: E402
 
 ROOT = "/work/repo"
-CHECKOUT = "/Users/someone/sting/sting-engine/install.py"
+CHECKOUT = "/Users/someone/src/sparta-security/engine/install.py"
 INSTALLED = "/Users/someone/.local/share/sting/current/install.py"
 
 # What switches the guard to observe mode or off, in words an agent could act on.
@@ -51,7 +51,7 @@ CHANGES = [
     "python3 install.py --yes --no-collector --no-supervisor",
     f"python3 {CHECKOUT} --observe",
     f"python3 {INSTALLED} --agent cursor",
-    "cd ~/sting/sting-engine && python3 install.py --observe",
+    "cd ~/src/sparta-security/engine && python3 install.py --observe",
     "./install.py --observe",
     "sudo python3 install.py --observe",
     "bash -c 'python3 install.py --observe'",

@@ -249,7 +249,7 @@ def check_trust_boundary() -> None:
 
     THE FAILURE THIS CATCHES, measured on this machine: with STING_ROOTS unset,
     `project_roots` resolves to the ONE git repo containing cwd. A developer
-    working across sibling repos — engine, panel, project under one parent —
+    working across several sibling repos under one parent —
     then has every edit to a sibling judged OUTSIDE the project. In a session
     that also held a credential that produced 74 `secret_derived_external:
     write_outside` denials, the largest single class in that period.

@@ -72,7 +72,7 @@ POPULATION = "guard-selfmod-v1"
 # ⚠ KNOWN TRUE POSITIVES IN guard-selfmod-v1, by (session id, seq). The rule is
 # RIGHT about each of these: not false alarms, but what it exists to catch.
 KNOWN_TRUE_POSITIVES: dict[tuple[str, int], str] = {
-    # The sting-test harness writing STING_OBSERVE=1 into a CONTAINER's
+    # A test harness writing STING_OBSERVE=1 into a CONTAINER's
     # ~/.sting/env, to prove the guard refuses it.
     ("345db5d8-08bc-431d-9c9b-41533ef8274f", 168):
         "deliberate sandboxed tamper attempt, caught correctly",
@@ -143,7 +143,7 @@ LEGITIMATE = [
     # ⚠ THE ONE fb071e3 ALREADY NARROWED AWAY FROM. The developer's repos live
     # under ~/sting/, so a bare `sting` match hit 188 of 190 real paths.
     "pkill -f sting",
-    "cd ~/sting/sting-engine && pytest -q",
+    "cd ~/src/sparta-security/engine && pytest -q",
 ]
 
 

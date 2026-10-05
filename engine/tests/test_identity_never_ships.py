@@ -76,7 +76,7 @@ def a_derived_identifier() -> str:
 # is a real shape an identifier appeared in — and the identifier itself is
 # supplied by the machine running the test.
 SPELLINGS = [
-    ("/Users/{id}/sting/sting-engine", "the slash form"),
+    ("/Users/{id}/src/sparta-security", "the slash form"),
     ("-Users-{id}-src-my-project", "THE 115-TIME MISS"),
     ("/private/tmp/claude-501/-Users-{id}-sting-x/scratch", "as it really appears"),
     ("~/.claude/projects/-Users-{id}-src-my-project", "and here"),

@@ -10,7 +10,7 @@ with a broken pipe rather than returning 413, and a stub returning a clean 413
 would have hidden that the shipper must classify a broken pipe as TOO_LARGE.
 
 ⚠ THE COLLECTOR IS IMPORTED, NEVER MODIFIED. It lives in its own repo and this
-file only starts it. If the checkout is absent these tests SKIP — sting-engine
+file only starts it. If the checkout is absent these tests SKIP — the engine
 must not require a sibling repo to run its suite.
 """
 from __future__ import annotations

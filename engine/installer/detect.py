@@ -214,8 +214,8 @@ def agents_present() -> list:
 def propose_roots(start: Path | None = None) -> dict:
     """Sibling git repositories, as a PROPOSAL with its reasoning.
 
-    Looks one level up from the checkout — `~/sting/sting-engine` implies
-    `~/sting/*`. That is the shape the measured failure had, and it is the only
+    Looks one level up from the checkout — `~/src/sparta-security` implies
+    `~/src/*`. That is the shape the measured failure had, and it is the only
     shape guessed at: an installer that walked the filesystem looking for `.git`
     would find node_modules, vendored copies, and other people's work.
     """

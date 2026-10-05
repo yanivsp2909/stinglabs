@@ -93,7 +93,7 @@ def test_the_marker_names_the_agent(command, agent):
 
 
 @pytest.mark.parametrize("command", THEIRS + [
-    "python3 ~/sting/sting-engine/tools/grade_engine.py",
+    "python3 ~/src/sparta-security/engine/tools/grade_engine.py",
     "echo sting_hook",                      # the word, not the script
     "node hook_entry.js --agent x",         # another program's file
 ])

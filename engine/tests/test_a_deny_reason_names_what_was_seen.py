@@ -28,7 +28,7 @@ DEST = "https://exfil.invalid"
 INVENTED = "read earlier"
 # Session 2ce35daf, seq 282, verbatim (290 chars, unclipped).
 ITEM_12 = (
-    'cd /Users/dev/src/sting-engine && grep -l -E "shell_scan|code_mask|'
+    'cd /Users/dev/src/sparta-security/engine && grep -l -E "shell_scan|code_mask|'
     '_REDIRECT|propagate|_cd_resolved|_deletion_targets|_norm_path|cd \\.aws|'
     'tainted_paths|sh -c|bash -c" tests/*.py | xargs python3 -m pytest -q '
     '--no-header -p no:cacheprovider 2>&1 | grep -E "passed|failed|^FAILED" | head')

@@ -221,7 +221,7 @@ def replay_one(calls, mode, log_path, session_root=None, workdir=None):
         env.pop("STING_PURPOSE", None)
     if workdir is not None:
         # Stop git walking up out of the scenario's directory and finding
-        # sting-engine's own repo. In a SYNTHETIC replay no `git add` was ever
+        # the engine's own repo. In a SYNTHETIC replay no `git add` was ever
         # really executed, so the real index is empty and meaningless; the
         # tracked staged list is the correct source of truth. Without this,
         # `git diff --cached` answers () — "inspected, nothing staged" — the
@@ -294,7 +294,7 @@ def main():
     for sid, calls in recs.items():
         # A neutral working directory per scenario. Recorded calls carry no
         # cwd, so the adapter falls back to os.getcwd() — which, run from the
-        # repo, is sting-engine itself. Every scenario's relative paths would
+        # repo, is the engine itself. Every scenario's relative paths would
         # resolve into our own tree, and `git diff --cached` would inspect OUR
         # index instead of the scenario's. The score would then depend on
         # whether anything happened to be staged here, which is not a property

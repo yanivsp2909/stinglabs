@@ -46,8 +46,8 @@ def _masked(text: str, known=mask.NO_SESSION) -> str:
     (f"/Users/{NAME}/proj/app", "/Users/[user]/proj/app"),
     (f"cd /Users/{NAME}", "cd /Users/[user]"),
     (f"/home/{NAME}/.bashrc", "/home/[user]/.bashrc"),
-    (f'"cwd": "/Users/{NAME}/sting/sting-engine"',
-     '"cwd": "/Users/[user]/sting/sting-engine"'),
+    (f'"cwd": "/Users/{NAME}/src/sparta-security"',
+     '"cwd": "/Users/[user]/src/sparta-security"'),
     (f"file:///Users/{NAME}/notes.md", "file:///Users/[user]/notes.md"),
     (f"/mnt/c/Users/{NAME}/Downloads", "/mnt/c/Users/[user]/Downloads"),
     (f"/System/Volumes/Data/Users/{NAME}/x", "/System/Volumes/Data/Users/[user]/x"),
@@ -152,12 +152,12 @@ def test_a_name_that_starts_with_a_system_folders_word_is_a_name(text, expected)
 
 
 def test_a_record_masks_the_name_in_every_field():
-    record = {"seq": 1, "cwd": f"/Users/{NAME}/sting/sting-engine",
+    record = {"seq": 1, "cwd": f"/Users/{NAME}/src/sparta-security",
               "command": f"cat /Users/{NAME}/sting/notes.md",
               "paths": [f"/Users/{NAME}/sting/notes.md"]}
     shipped = mask.mask_record(record)
     assert NAME not in json.dumps(shipped)
-    assert shipped["cwd"] == "/Users/[user]/sting/sting-engine"
+    assert shipped["cwd"] == "/Users/[user]/src/sparta-security"
     assert shipped["masked"]["user"] == 3
 
 

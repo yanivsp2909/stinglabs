@@ -41,7 +41,7 @@ from core.types import Action, ActionKind, SessionState
 
 ROOT = Path(__file__).parent.parent
 FIXTURE = ROOT / "logs" / "live-fixture"
-PROJECT = "/Users/dev/sting/sting-engine"
+PROJECT = "/Users/dev/src/sparta-security"
 
 
 class _World:

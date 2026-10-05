@@ -24,7 +24,7 @@ engine decides: ALLOW where a clean session allowed, the irreversible ASK for a
 recursive delete, and in an untrusted session `untrusted_unexpected:
 guard_selfmod`, which the shipped default no longer relaxes.
 
-⚠ THE SOURCE REPO IS NOT THE GUARD. `~/sting/sting-engine` is development and
+⚠ THE SOURCE REPO IS NOT THE GUARD. A source checkout is development and
 stays exactly as it was: no part below matches it.
 """
 from __future__ import annotations
@@ -135,13 +135,13 @@ READS = [
     "launchctl list | grep -i sting",
 ]
 SOURCE_REPO = [
-    "sed -i 's/a/b/' ~/sting/sting-engine/core/policy.py",
-    "echo x > ~/sting/sting-engine/docs/x.md",
-    "rm ~/sting/sting-engine/hook_entry.py",
-    "cd ~/sting/sting-engine && python3 -m pytest tests -q",
-    "cp /tmp/engine.py ~/sting/sting-engine/core/engine.py",
+    "sed -i 's/a/b/' ~/src/sparta-security/engine/core/policy.py",
+    "echo x > ~/src/sparta-security/engine/docs/x.md",
+    "rm ~/src/sparta-security/engine/hook_entry.py",
+    "cd ~/src/sparta-security/engine && python3 -m pytest tests -q",
+    "cp /tmp/engine.py ~/src/sparta-security/engine/core/engine.py",
     "pkill -f sting",
-    "pkill -f ~/sting/sting-engine/daemon/server.py",
+    "pkill -f ~/src/sparta-security/engine/daemon/server.py",
 ]
 # Another project's processes with the guard's generic-looking names: a pattern
 # that cannot match the guard's command line stops nothing of it.
@@ -303,7 +303,7 @@ def test_another_projects_daemon_is_not_the_guard(command):
 
 
 def test_a_write_tool_in_the_source_repo_is_allowed_in_a_clean_session():
-    path = "/Users/dev/sting/sting-engine/core/engine.py"
+    path = "/Users/dev/src/sparta-security/core/engine.py"
     verdict = decide(act(ActionKind.WRITE, paths=(path,), content="x"), clean())
     assert verdict.decision is Decision.ALLOW, verdict
 

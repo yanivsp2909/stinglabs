@@ -23,7 +23,7 @@ def payload(tool="Bash", tool_input=None, session="s1"):
 def records(session="s1"):
     """Only DECISION records — the log now opens with a `session_start` canary,
     so the Nth decision is no longer the Nth record. Every production reader
-    filters the same way (replay_live.py:143, panel sources.py:201)."""
+    filters the same way (replay_live.py:143, and any viewer that reads the log)."""
     return [r for r in read_records(default_log_path(session))
             if r.get("event") == "decision"]
 

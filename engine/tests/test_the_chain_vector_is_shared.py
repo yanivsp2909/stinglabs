@@ -1,16 +1,15 @@
 """The shared chain vector, run through the engine's own chain code.
 
-`tests/vectors/chain-v1.json` is the file the dashboard keeps as
-`test-vectors/chain-v1.json`: made-up records whose canonical strings and
-digests came from this engine's `audit_log.canonical` / `record_hash` and
-`wire.chain_at_tier`, which the panel's JavaScript port re-hashes in the
-browser. The panel's suite checks its port against the file; this one checks
-the engine against it — so neither implementation can drift from the other
-without one of the two suites failing. docs/113 §2.
+`tests/vectors/chain-v1.json` holds made-up records whose canonical strings
+and digests came from this engine's `audit_log.canonical` / `record_hash` and
+`wire.chain_at_tier`. Any independent verifier of the chain (in another
+language, say) can check itself against the same file; this suite checks the
+engine against it, so neither implementation can drift without one of the
+two suites failing.
 
-⚠ ONE FILE IN TWO REPOSITORIES. The digest below pins this copy; the panel's
-copy must be the same bytes. A change to the canonical form regenerates the
-file from the engine, here first, and the identical file goes to the panel.
+⚠ THE DIGEST BELOW PINS THE FILE. A change to the canonical form regenerates
+the file from the engine, updates this digest, and every other verifier
+re-checks against the new bytes.
 """
 from __future__ import annotations
 
@@ -22,7 +21,7 @@ from pathlib import Path
 from core import audit_log, wire
 
 VECTOR = Path(__file__).parent / "vectors" / "chain-v1.json"
-VECTOR_SHA256 = "27014d33d83239ac676d1843604568ed3a04ae26d57dfed89bf2585b28c87d97"
+VECTOR_SHA256 = "6dc464bd3ed7a9d38e4ecc64969c82c4482433caa1ddb3ea9ee0648cba94afce"
 _TIER_FIELDS = ("tier_chain", "tier_prev", "tier_hash")
 
 
@@ -30,12 +29,11 @@ def _vector() -> dict:
     return json.loads(VECTOR.read_text(encoding="utf-8"))
 
 
-def test_the_vector_is_the_file_the_panel_runs():
+def test_the_vector_is_the_pinned_file():
     digest = hashlib.sha256(VECTOR.read_bytes()).hexdigest()
     assert digest == VECTOR_SHA256, (
-        "tests/vectors/chain-v1.json changed: the dashboard's "
-        "test-vectors/chain-v1.json must be replaced with the same bytes, "
-        "and this digest with the new one")
+        "tests/vectors/chain-v1.json changed: every other verifier must "
+        "re-check against the new bytes, and this digest must be updated")
 
 
 def test_each_canonical_string_is_the_engines():

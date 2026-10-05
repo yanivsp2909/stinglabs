@@ -47,10 +47,10 @@ def test_a_windows_path_survives_the_windows_separator():
     """THE DEFECT: `C:\\Users\\alice\\Projects` reported as unresolvable, on a
     platform where `;` is the separator. Every Windows path contains a colon in
     `C:`, so the user could not work around it."""
-    value = r"C:\Users\alice\Projects;C:\Users\alice\sting-engine"
+    value = r"C:\Users\alice\Projects;C:\Users\alice\sparta-security"
 
     assert probes.split_roots(value, ";") == [
-        r"C:\Users\alice\Projects", r"C:\Users\alice\sting-engine"]
+        r"C:\Users\alice\Projects", r"C:\Users\alice\sparta-security"]
 
 
 def test_no_module_still_splits_a_roots_value_on_a_literal_colon():
@@ -151,7 +151,7 @@ def test_the_env_file_yields_every_key_not_just_the_tier(tmp_path):
     env_file.write_text(
         "# written by install.py\n"
         "export STING_COLLECTOR_URL='https://example.invalid/ingest'\n"
-        "export STING_DEVICE_ID='sagi-win11'\n"
+        "export STING_DEVICE_ID='dev-win11'\n"
         "export STING_DEVICE_TOKEN='a-token-with-no-colon'\n"
         "export STING_TIER='verdict_reason_location'\n"
         r"export STING_ROOTS='C:\Users\alice\one;C:\Users\alice\two'" + "\n",
@@ -161,7 +161,7 @@ def test_the_env_file_yields_every_key_not_just_the_tier(tmp_path):
 
     assert values["STING_TIER"] == "verdict_reason_location"
     assert values["STING_COLLECTOR_URL"] == "https://example.invalid/ingest"
-    assert values["STING_DEVICE_ID"] == "sagi-win11"
+    assert values["STING_DEVICE_ID"] == "dev-win11"
     assert values["STING_DEVICE_TOKEN"] == "a-token-with-no-colon"
     assert values["STING_ROOTS"] == r"C:\Users\alice\one;C:\Users\alice\two"
 

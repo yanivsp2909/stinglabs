@@ -1,5 +1,5 @@
 {
-  "about": "Shared chain test vector. Made-up records; every digest and canonical string was produced by sting-engine's own functions (core.audit_log.canonical / record_hash, core.wire.chain_at_tier) at engine commit 9428e8c, and the panel's JS port (src/lib/pyJson.ts, src/lib/chainVerify.ts) must reproduce them byte for byte. The engine side should run the same file in its tests; until it does, regenerate this file from the engine whenever its canonical form changes.",
+  "about": "Shared chain test vector. Made-up records; every digest and canonical string was produced by the engine's own functions (core.audit_log.canonical / record_hash, core.wire.chain_at_tier). Any independent verifier of the chain can check itself against this file byte for byte; regenerate it from the engine whenever the canonical form changes.",
   "canonical": [
     {
       "canonical": "{\"duration_ms\":2.0,\"flag\":true,\"none\":null,\"seq\":3,\"ts\":1790000000.0}",
