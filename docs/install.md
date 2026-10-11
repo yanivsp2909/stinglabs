@@ -113,9 +113,17 @@ outstanding one-shot grants, because a grant approves one action under one polic
 
 ## Native Windows (experimental)
 
-The installer has a native Windows path: a pointer file instead of a symlink, a Scheduled Task instead of
-launchd/systemd, and a PowerShell bridge for Cursor. It has known gaps, including the Scheduled Task arm and
-`⚠` in a refusal on a cp1252 console, and Windows is not part of the tested matrix. Use WSL if you can.
+The installer has a native Windows path, but it has not yet been proven end to end with a real agent, and
+Windows is not part of the tested matrix. If your agent runs inside WSL, install inside WSL instead.
+
+| | |
+|---|---|
+| **Command** | `py install.py` in PowerShell (not as Administrator). Where a message says `python3`, type `py`. |
+| **`--roots`** | separate folders with `;`, because Windows paths already contain `:` |
+| **Speed** | no background daemon (Windows Python has no Unix sockets), so every check starts Python from scratch and is slower than on macOS or Linux |
+| **Installed copy** | `%USERPROFILE%\.local\share\sting`; `current` is a pointer file (`current.txt`), not a symlink, because Windows needs Developer Mode for symlinks |
+| **Cursor** | its hook runs through a PowerShell bridge with `-ExecutionPolicy Bypass`, so you don't need to change your execution policy |
+| **Known gaps** | the Scheduled Task that runs the shipper (only matters with a collector), and `⚠` in a refusal can show as garbage on an old cp1252 console |
 
 ## Uninstalling
 
