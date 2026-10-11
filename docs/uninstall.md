@@ -1,7 +1,7 @@
 # Uninstalling the guard
 
 ```bash
-cd sparta-security/engine
+cd stinglabs/engine
 python3 install.py --uninstall
 ```
 
@@ -48,5 +48,5 @@ Sparta is a separate Python package, and the guard's uninstall does not touch it
 
 ```bash
 python3 -m pip uninstall sparta
-rm -rf sparta-security/sparta/models      # the downloaded model files
+rm -rf stinglabs/sparta/models      # the downloaded model files
 ```

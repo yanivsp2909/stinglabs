@@ -1,4 +1,4 @@
-# 🛡️ sparta-security
+# 🛡️ StingLabs
 
 **Stops AI coding agents from leaking your secrets.**
 
@@ -46,7 +46,7 @@ same push in a clean session is allowed. Try it: `python3 engine/runner/replay.p
 ## 🚀 Install
 
 > 💡 **Two tips first:**
-> - Put the folder **next to your projects** (like `~/code/sparta-security` beside `~/code/my-app`). The
+> - Put the folder **next to your projects** (like `~/code/stinglabs` beside `~/code/my-app`). The
 >   installer suggests the repos next to it as "your projects".
 > - **Keep the folder** after installing. You need it to update and uninstall.
 
@@ -61,13 +61,13 @@ same push in a clean session is allowed. Try it: `python3 engine/runner/replay.p
 2. **Get the code.**
    ```bash
    mkdir -p ~/code && cd ~/code
-   git clone https://github.com/yanivsp2909/sparta-security.git
+   git clone https://github.com/yanivsp2909/stinglabs.git
    ```
    No git? Click **Code → Download ZIP** above, unzip it, and move the folder into `~/code`.
 
 3. **Run the installer.**
    ```bash
-   cd ~/code/sparta-security/engine
+   cd ~/code/stinglabs/engine
    python3.12 install.py
    ```
    It shows the repos it found and asks `Declare these as your project?`. Type `y` if the list is right.
@@ -89,14 +89,14 @@ same push in a clean session is allowed. Try it: `python3 engine/runner/replay.p
 2. **Open PowerShell** (normal, **not** "Run as administrator") and get the code.
    ```powershell
    mkdir $HOME\code -Force; cd $HOME\code
-   git clone https://github.com/yanivsp2909/sparta-security.git
+   git clone https://github.com/yanivsp2909/stinglabs.git
    ```
    No git? Click **Code → Download ZIP** above, right-click it, **Extract All**, and move it into `$HOME\code`.
-   Windows often nests it twice (`sparta-security-main\sparta-security-main`): use the inner one.
+   Windows often nests it twice (`stinglabs-main\stinglabs-main`): use the inner one.
 
 3. **Run the installer.**
    ```powershell
-   cd $HOME\code\sparta-security\engine
+   cd $HOME\code\stinglabs\engine
    py install.py
    ```
    Type `y` when it asks about your projects.

@@ -22,7 +22,7 @@ The shipper imports `sparta.sting_detector` by name, so the package must be impo
 interpreter that ran `install.py`** (the installer records that interpreter for the hook and the shipper).
 
 ```bash
-cd sparta-security
+cd stinglabs
 python3.12 -m pip install -e ./sparta        # use the interpreter you ran install.py with
 ```
 

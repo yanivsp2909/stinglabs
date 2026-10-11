@@ -16,8 +16,8 @@ worked.
 ## Install
 
 ```bash
-git clone https://github.com/yanivsp2909/sparta-security.git
-cd sparta-security/engine
+git clone https://github.com/yanivsp2909/stinglabs.git
+cd stinglabs/engine
 python3 install.py            # or python3.12 install.py
 ```
 
