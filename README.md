@@ -44,27 +44,143 @@ repository's own scenarios: `python3 engine/runner/replay.py --only I02-commit-i
 
 | | |
 |---|---|
-| **OS** | macOS or Linux (WSL counts as Linux). Native Windows is experimental. |
+| **OS** | macOS or Linux (WSL counts as Linux). Native Windows is supported by the installer but not yet proven end to end with a real agent. |
 | **Python** | **3.11+** for the guard. Sparta runs on 3.10+, but install it into the same interpreter as the guard. |
+| **Git** | optional. You can download a ZIP instead. Git just makes updating one command. |
 | **An agent** | Claude Code, Cursor, Codex, GitHub Copilot (VS Code agent hooks) or Antigravity. Claude Code is the fully verified integration. See [docs/agents.md](docs/agents.md). |
 | **Dependencies** | none for the guard. Sparta needs `numpy`, `onnxruntime` and `tokenizers`. The test suites need `pytest` (and `pyyaml` for the engine). |
 | **A collector** | optional. Without one, nothing leaves the machine. No collector ships with this repository. |
 
 ## Install
 
+The installer does the same four things on every OS: it asks for your **trust boundary** (`STING_ROOTS`, the
+folders that are your projects), wires a hook into each agent it finds, copies the guard into your home folder,
+and finishes with a preflight that drives a real read-a-secret, commit, push sequence through the installed hook
+and requires a DENY. It installs **for your user only**. Never run it with `sudo` or as Administrator.
+
+**Before you start, two things that save you trouble:**
+
+- **Put the folder next to your projects** (for example `~/code/sparta-security` beside `~/code/my-app`). The
+  installer proposes every git repository beside its own folder as your trust boundary. Unpacked in
+  `Downloads`, it finds nothing, and without a trust boundary ordinary edits between your repos get flagged as
+  leaving your project. You can always name the folders yourself with `--roots`.
+- **Keep the folder after installing.** The hook runs an installed copy, not this folder, but `install.py`
+  itself is not copied. You need this folder to check status, update and uninstall.
+
+### macOS
+
+**1. Get Python 3.11 or newer.** Check with `python3 --version`. Apple's built-in `python3` is often 3.9, which
+the installer refuses. Install a newer one either way:
+
 ```bash
-git clone <this repository> sparta-security
-cd sparta-security/engine
-python3 install.py              # on macOS, maybe python3.12 install.py
-python3 install.py --status
+brew install python@3.12        # with Homebrew, then use python3.12 below
 ```
 
-The installer asks one question, your **trust boundary** (`STING_ROOTS`, the folders that are your project),
-wires a hook into each agent it finds, and finishes with a preflight that drives a real read-a-secret, commit,
-push sequence through the installed hook and requires a DENY. Full guide: [docs/install.md](docs/install.md).
+or download the macOS installer from [python.org/downloads](https://www.python.org/downloads/), which also gives
+you a `python3.12` command.
 
-**Uninstall:** `python3 install.py --uninstall`. It removes the hooks, the service, the daemon and the
-installed copy, and deliberately keeps your decision logs in `~/.sting`. See [docs/uninstall.md](docs/uninstall.md).
+**2. Get the code**, with git:
+
+```bash
+mkdir -p ~/code && cd ~/code
+git clone https://github.com/yanivsp2909/sparta-security.git
+```
+
+or without git: on this page click **Code → Download ZIP**, double-click the ZIP in Finder, and move the
+`sparta-security-main` folder into `~/code`.
+
+**3. Run the installer** with the Python from step 1:
+
+```bash
+cd ~/code/sparta-security/engine          # from the ZIP: ~/code/sparta-security-main/engine
+python3.12 install.py
+```
+
+It shows the repositories it found and asks `Declare these as your project? [y/N]`. Answer `y` if the list is
+right. If it is wrong or empty, run it again with your folders, separated by `:`:
+
+```bash
+python3.12 install.py --roots "$HOME/code/my-app:$HOME/code/other-repo"
+```
+
+**4. Check it and restart your agent:**
+
+```bash
+python3.12 install.py --status            # version, mode, and each agent: protected / unverified / not found
+```
+
+Start a new agent session so it picks up the hook. The hook is pinned to the exact Python you installed with,
+so if you remove that Python later, re-run `install.py` with the new one.
+
+### Windows
+
+**Where does your agent run?** If it runs inside WSL, install inside WSL with the macOS steps above (`python3`
+instead of `python3.12`). If it runs on Windows itself (Claude Code in PowerShell, Cursor for Windows), use
+these native steps. Native Windows is supported by the installer but has **not yet been proven end to end with
+a real agent**, and the installer says so when you run it.
+
+**1. Get Python 3.11 or newer** from [python.org/downloads](https://www.python.org/downloads/) (the Windows
+installer). On the first screen tick **Add python.exe to PATH**. Then open **PowerShell** (a normal one, not
+"Run as administrator") and check:
+
+```powershell
+py --version        # must say 3.11 or newer; py -0 lists every Python you have
+```
+
+**2. Get the code**, with [Git for Windows](https://git-scm.com/download/win):
+
+```powershell
+mkdir $HOME\code -Force; cd $HOME\code
+git clone https://github.com/yanivsp2909/sparta-security.git
+```
+
+or without git: on this page click **Code → Download ZIP**, right-click the ZIP, choose **Extract All**, and move
+the result into `$HOME\code`. Extract All usually nests it one level (`sparta-security-main\sparta-security-main`).
+Use the inner folder, the one that contains `engine`.
+
+**3. Run the installer:**
+
+```powershell
+cd $HOME\code\sparta-security\engine     # from the ZIP: the inner sparta-security-main\engine
+py install.py
+```
+
+Answer the trust-boundary question as on macOS. To name the folders yourself, separate them with `;` (Windows
+paths already contain `:`):
+
+```powershell
+py install.py --roots "C:\Users\you\code\my-app;C:\Users\you\code\other-repo"
+```
+
+**4. Check it and restart your agent:**
+
+```powershell
+py install.py --status
+```
+
+**What is different on Windows:**
+
+| | |
+|---|---|
+| **Speed** | there is no background daemon (Windows Python has no Unix sockets), so every check starts Python from scratch and is slower than on macOS or Linux |
+| **The installed copy** | lives in `%USERPROFILE%\.local\share\sting`, and `current` is a pointer file (`current.txt`), not a symlink, because Windows needs Developer Mode for symlinks |
+| **Cursor** | its hook runs through a small PowerShell bridge with `-ExecutionPolicy Bypass`, so you do not need to change your execution policy |
+| **Known gaps** | the Scheduled Task that runs the shipper (only matters if you configured a collector), and the `⚠` sign in a refusal can show as garbage on an old cp1252 console |
+
+### After installing (every OS)
+
+- **Try it:** the read-`.env`-then-`curl` demo in [docs/install.md](docs/install.md#did-it-work) shows a DENY in
+  under a minute.
+- **When it blocks something you meant to do:** the refusal you see prints the exact command that allows that one
+  action once. Run it from **your own terminal**, never through the agent. On Windows, type `py` where it says
+  `python3`.
+- **Update:** with git, `git pull` in the folder and re-run `install.py`. From a ZIP, download the new ZIP, unpack
+  it the same way and run `install.py` from the new folder. Your settings carry forward either way.
+- **Uninstall:** `install.py --uninstall` from the same folder. It removes the hooks, the service, the daemon and
+  the installed copy, and deliberately keeps your decision logs in `~/.sting`. See
+  [docs/uninstall.md](docs/uninstall.md).
+
+Every flag (collector, mode, one agent only, dry run): [docs/install.md](docs/install.md).
 
 ## Running the engine with Sparta
 
